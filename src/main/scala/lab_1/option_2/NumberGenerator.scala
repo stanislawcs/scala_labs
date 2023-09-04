@@ -11,7 +11,6 @@ object NumberGenerator {
     try {
       NumberGenerator.validate(stringOfNumbers)
     } catch {
-
       case e: Exception =>
         println(e.getMessage)
         stringOfNumbers = NumberGenerator.makeStringLengthToNormalState(stringOfNumbers)
@@ -27,16 +26,14 @@ object NumberGenerator {
 
   def makeStringLengthToNormalState(stringOfNumbers: String): String = {
     val random = new Random();
-    var resultString = ""
 
-    resultString = if (stringOfNumbers.length() < 10) {
+    if (stringOfNumbers.length() < 10) {
       stringOfNumbers.
         concat((1 to 10 - stringOfNumbers.length()).map(_ => random.nextInt(10))).mkString
     }
     else
-      stringOfNumbers.substring(0, 10)
+     stringOfNumbers.substring(0, 10)
 
-    resultString
   }
 
 
@@ -84,6 +81,5 @@ object NumberGenerator {
 }
 
 object Main extends App {
-  var stringOfNumbers = NumberGenerator.input()
-  NumberGenerator.generate(stringOfNumbers)
+  NumberGenerator.generate(NumberGenerator.input())
 }
