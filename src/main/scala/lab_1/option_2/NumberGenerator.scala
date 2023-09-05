@@ -6,11 +6,17 @@ object NumberGenerator {
 
   def input(): String = {
     println("Input 10-digit number: ")
-    var stringOfNumbers = scala.io.StdIn.readLine()
+    var stringOfNumbers = ""
 
     try {
+
+      stringOfNumbers = scala.io.StdIn.readLong.toString
       NumberGenerator.validate(stringOfNumbers)
+
     } catch {
+      case nfe: NumberFormatException =>
+        println("Number should be valid")
+        sys.exit(0)
       case e: Exception =>
         println(e.getMessage)
         stringOfNumbers = NumberGenerator.makeStringLengthToNormalState(stringOfNumbers)
@@ -32,7 +38,7 @@ object NumberGenerator {
         concat((1 to 10 - stringOfNumbers.length()).map(_ => random.nextInt(10))).mkString
     }
     else
-     stringOfNumbers.substring(0, 10)
+      stringOfNumbers.substring(0, 10)
 
   }
 
@@ -47,24 +53,26 @@ object NumberGenerator {
       println("Numbers: " + numbers)
       var a = substringFromSymbolsAtEvenPositions(numbers).toInt
       var b = substringFromSymbolsAtOddPositions(numbers).toInt
-
       c = a * b
+      c = abs(c)
       var rez = c.toString.substring(0, 3).toFloat / 1000
       z += c
+      z = abs(z)
       println(s"a = $a")
       println(s"b = $b")
       println(s"c = $c")
       println(s"rez = $rez")
       println(s"z = $z")
       println("-----------------------")
-      numbers = "011" + z
+
+      numbers = z.toString
     }
 
   }
 
   def substringFromSymbolsAtEvenPositions(stringOfNumbers: String): String = {
     var result = ""
-    for (i <- 0 until 10 by 2) {
+    for (i <- 0 until stringOfNumbers.length by 2) {
       result = result.concat(stringOfNumbers.charAt(i).toString)
     }
     result
@@ -72,13 +80,22 @@ object NumberGenerator {
 
   def substringFromSymbolsAtOddPositions(stringOfNumbers: String): String = {
     var result = ""
-    for (i <- 1 until 10 by 2) {
+    for (i <- 1 until stringOfNumbers.length by 2) {
       result = result.concat(stringOfNumbers.charAt(i).toString)
     }
     result
   }
 
+  def abs(num: Int): Int = {
+    var number = num
+    if (number < 0) {
+      number = -number
+    }
+
+    number
+  }
 }
+
 
 object Main extends App {
   NumberGenerator.generate(NumberGenerator.input())
