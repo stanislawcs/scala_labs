@@ -17,5 +17,5 @@ object SumOfNegativeNumbers {
 
 object Main extends App {
   val list = SumOfNegativeNumbers.filterList()
-  println(SumOfNegativeNumbers.getSumOfNegativeNumbers(list))
+  println("Sum of negative numbers: " + SumOfNegativeNumbers.getSumOfNegativeNumbers(list))
 }

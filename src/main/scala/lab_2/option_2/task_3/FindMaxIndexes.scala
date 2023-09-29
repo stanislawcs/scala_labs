@@ -31,5 +31,5 @@ object FindMaxIndexes {
 
 object Main extends App {
   val list = List(15, 32, -14, 64, -48, -32, 83, 79, -17, 85)
-  println(FindMaxIndexes.findAverage(list))
+  println("Index of all max elements: " + FindMaxIndexes.findAverage(list))
 }

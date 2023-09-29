@@ -36,5 +36,5 @@ object CheckList {
 
 object Main extends App {
   val list = List(1, 2, 3, 3, 2, 1)
-  println(CheckList.checkToDecrease(list) && CheckList.checkToIncrease(list))
+  println("The list is not ordered in either ascending or descending order is " + (CheckList.checkToDecrease(list) && CheckList.checkToIncrease(list)))
 }

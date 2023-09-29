@@ -19,5 +19,5 @@ object Sum {
 
 object Main extends App {
   val list = List(15, 32, -14, 64, -48, -32, 83, 79, -17, 85)
-  println(Sum.getSum(Sum.getLastThreeDigit(list)))
+  println("Sum of last 3 elements: " + Sum.getSum(Sum.getLastThreeDigit(list)))
 }
